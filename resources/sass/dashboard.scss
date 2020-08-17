@@ -2,6 +2,15 @@ body {
     background-color: #fff;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0px;
+}
+
 .main-content {
     background-color: #eaede8;
 }
@@ -19,5 +28,28 @@ body {
     &:hover {
         color: #000;
         opacity: 1;
+    }
+}
+
+.card {
+    .card-header {
+        h3 {
+            color: #656e88;
+            font-size: 1em;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+table {
+    tr {
+        th,
+        td {
+            color: #737373;
+        }
+
+        td {
+            font-size: 0.9em;
+        }
     }
 }
