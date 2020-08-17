@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
 
 @section('content')
-dashboard
+{{$active}}
 @endsection

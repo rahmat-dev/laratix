@@ -80,7 +80,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-2">
-            <x-menu />
+            <x-menu :active="$active" />
           </div>
           <div class="col-md-10 main-content">
             @yield('content')

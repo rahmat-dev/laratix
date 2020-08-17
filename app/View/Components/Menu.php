@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class Menu extends Component
 {
+  public $active;
+
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct()
+  public function __construct($active)
   {
-    //
+    $this->active = $active;
   }
 
   /**
@@ -23,7 +25,12 @@ class Menu extends Component
    */
   public function render()
   {
-    $listMenu = [
+    return view('components.menu');
+  }
+
+  public function listMenu()
+  {
+    return [
       [
         'label' => 'Dashboard'
       ],
@@ -40,7 +47,10 @@ class Menu extends Component
         'label' => 'Users'
       ],
     ];
+  }
 
-    return view('components.menu', compact('listMenu'));
+  public function isActive($label)
+  {
+    return $label === $this->active;
   }
 }

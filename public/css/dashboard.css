@@ -12,6 +12,11 @@ body {
   padding: 1em 0em;
 }
 
+.nav-link.active {
+  opacity: 1;
+  font-weight: bold;
+}
+
 .nav-link:hover {
   color: #000;
   opacity: 1;
