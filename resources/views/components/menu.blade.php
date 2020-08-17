@@ -1,5 +1,7 @@
-<div>
+<nav class="nav flex-column">
   @foreach ($listMenu as $menu)
-  {{ $menu['label'] }}
+  <a href="#" class="nav-link">
+    {{ $menu['label'] }}
+  </a>
   @endforeach
-</div>
+</nav>
