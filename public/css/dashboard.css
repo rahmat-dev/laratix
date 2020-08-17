@@ -46,3 +46,7 @@ table tr td {
   font-size: 0.9em;
 }
 
+.pagination {
+  justify-content: center;
+}
+
