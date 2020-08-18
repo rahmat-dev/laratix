@@ -8,7 +8,9 @@
         <h3>Users</h3>
       </div>
       <div class="col-md-4 text-right">
-        <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#deleteModal">
+          <i class="fas fa-trash"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -50,18 +52,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">Hapus Data</h3>
+        <button class="btn" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
       <div class="modal-body">
         <p>Anda yakin ingin menghapus data user <b>{{ $user->name }}</b>?</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
-
         <form action="{{ url('/dashboard/user/delete', $user->id) }}" method="POST">
           @csrf
           @method('DELETE')
 
-          <button class="btn btn-sm btn-danger">Delete</button>
+          <button class="btn btn-sm btn-danger">
+            <i class="fas fa-trash"></i> Delete
+          </button>
         </form>
       </div>
     </div>
