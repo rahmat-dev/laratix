@@ -44,9 +44,15 @@ table tr td {
 
 table tr td {
   font-size: 0.9em;
+  vertical-align: middle !important;
 }
 
 .pagination {
   justify-content: center;
+}
+
+form .form-group label {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
 }
 
