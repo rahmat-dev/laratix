@@ -17,7 +17,7 @@
   <div class="card-body p-0 py-4">
     <div class="row">
       <div class="col-md-8 mx-auto">
-        <form action="{{ url('/dashboard/user/update', $user->id) }}" method="POST">
+        <form action="{{ route('dashboard.users.update', $user->id) }}" method="POST">
           @csrf
           @method('PUT')
 
@@ -60,7 +60,7 @@
         <p>Anda yakin ingin menghapus data user <b>{{ $user->name }}</b>?</p>
       </div>
       <div class="modal-footer">
-        <form action="{{ url('/dashboard/user/delete', $user->id) }}" method="POST">
+        <form action="{{ route('dashboard.users.delete', $user->id) }}" method="POST">
           @csrf
           @method('DELETE')
 
