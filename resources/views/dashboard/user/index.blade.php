@@ -27,6 +27,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>Registered</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +37,9 @@
           <td>{{ $user['name'] }}</td>
           <td>{{ $user['email'] }}</td>
           <td>{{ $user['created_at'] }}</td>
+          <td>
+            <a href="{{ url('/dashboard/user/edit', $user->id) }}" class="btn btn-sm btn-success">Edit</a>
+          </td>
         </tr>
         @endforeach
       </tbody>

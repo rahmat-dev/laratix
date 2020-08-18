@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+  public $active = 'Users';
   /**
    * Display a listing of the resource.
    *
@@ -26,7 +27,7 @@ class UserController extends Controller
 
     return view('dashboard.user.index', [
       'users' => $users,
-      'active' => $active
+      'active' => $this->active
     ]);
   }
 
@@ -70,7 +71,10 @@ class UserController extends Controller
    */
   public function edit($id)
   {
-    //
+    return view('dashboard.user.edit', [
+      'user' => User::find($id),
+      'active' => $this->active
+    ]);
   }
 
   /**
@@ -82,7 +86,15 @@ class UserController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $validateUser = $request->validate([
+      'name' => 'required',
+      'email' => 'required|unique:users,email,' . $id
+    ]);
+
+    $user = User::find($id);
+    $user->update($validateUser);
+
+    return redirect('/dashboard/users');
   }
 
   /**
@@ -93,6 +105,8 @@ class UserController extends Controller
    */
   public function destroy($id)
   {
-    //
+    User::findOrFail($id)->delete();
+
+    return redirect('/dashboard/users');
   }
 }
