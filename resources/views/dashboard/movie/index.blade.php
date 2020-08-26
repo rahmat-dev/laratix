@@ -20,6 +20,7 @@
     </div>
   </div>
   <div class="card-body p-0">
+    @if ($movies->total() > 0)
     <table class="table table-striped table-hover table-borderless">
       <thead>
         <tr>
@@ -47,6 +48,9 @@
     </table>
 
     {{ $movies->links() }}
+    @else
+    <h4 class="text-center p-3">Belum ada data Movie.</h4>
+    @endif
   </div>
 </div>
 @endsection
