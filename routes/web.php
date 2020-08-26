@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth']], function () {
 
   // Users
   Route::get('/dashboard/movies', 'Dashboard\MovieController@index')->name('dashboard.movies');
+  Route::post('/dashboard/movies', 'Dashboard\MovieController@store')->name('dashboard.movies.store');
+  Route::get('/dashboard/movies/create', 'Dashboard\MovieController@create')->name('dashboard.movies.create');
   Route::get('/dashboard/movies/{id}/edit', 'Dashboard\MovieController@edit')->name('dashboard.movies.edit');
   Route::put('/dashboard/movies/{id}', 'Dashboard\MovieController@update')->name('dashboard.movies.update');
   Route::delete('/dashboard/movies/{id}', 'Dashboard\MovieController@destroy')->name('dashboard.movies.delete');

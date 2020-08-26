@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -39,7 +40,9 @@ class MovieController extends Controller
    */
   public function create()
   {
-    //
+    return view('dashboard.movie.create', [
+      'active' => $this->active
+    ]);
   }
 
   /**
@@ -48,9 +51,25 @@ class MovieController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(Request $request, Movie $movie)
   {
-    //
+    $validateMovie = $request->validate([
+      'title' => 'required|unique:movies,title',
+      'description' => 'required',
+      'thumbnail' => 'required|image'
+    ]);
+
+    $image = $request->file('thumbnail');
+    $filename = time() . '.' . $image->getClientOriginalExtension();
+
+    Storage::disk('local')->putFileAs('public/movies', $image, $filename);
+
+    $movie->title = $validateMovie['title'];
+    $movie->description = $validateMovie['description'];
+    $movie->thumbnail = $filename;
+    $movie->save();
+
+    return redirect()->route('dashboard.movies');
   }
 
   /**
