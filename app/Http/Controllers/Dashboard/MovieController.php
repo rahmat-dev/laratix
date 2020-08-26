@@ -3,36 +3,31 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Movie;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MovieController extends Controller
 {
-  public $active = 'Users';
-
-  // public function __construct()
-  // {
-  //   $this->middleware('auth');
-  // }
+  public $active = 'Movies';
 
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
-  public function index(Request $request, User $user)
+  public function index(Request $request, Movie $movie)
   {
     $querySearch = $request->input('q');
 
-    $users = $user->when($querySearch, function ($query) use ($querySearch) {
+    $movies = $movie->when($querySearch, function ($query) use ($querySearch) {
       return $query->where('name', 'like', '%' . $querySearch . '%')
         ->orWhere('email', 'like', '%' . $querySearch . '%');
     })->paginate(10);
 
-    $users->appends($request->only('q'));
+    $movies->appends($request->only('q'));
 
-    return view('dashboard.user.index', [
-      'users' => $users,
+    return view('dashboard.movie.index', [
+      'movies' => $movies,
       'active' => $this->active
     ]);
   }
@@ -61,10 +56,10 @@ class UserController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
+   * @param  \App\Movie  $movie
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(Movie $movie)
   {
     //
   }
@@ -72,47 +67,34 @@ class UserController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  int  $id
+   * @param  \App\Movie  $movie
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit(Movie $movie)
   {
-    return view('dashboard.user.edit', [
-      'user' => User::find($id),
-      'active' => $this->active
-    ]);
+    //
   }
 
   /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
+   * @param  \App\Movie  $movie
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, Movie $movie)
   {
-    $validateUser = $request->validate([
-      'name' => 'required',
-      'email' => 'required|unique:users,email,' . $id
-    ]);
-
-    $user = User::find($id);
-    $user->update($validateUser);
-
-    return redirect('/dashboard/users');
+    //
   }
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param  int  $id
+   * @param  \App\Movie  $movie
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Movie $movie)
   {
-    User::findOrFail($id)->delete();
-
-    return redirect('/dashboard/users');
+    //
   }
 }
